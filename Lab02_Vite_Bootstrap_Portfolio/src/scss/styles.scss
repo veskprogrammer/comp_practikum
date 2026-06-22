@@ -1,0 +1,124 @@
+$primary: #6c63ff;
+$secondary: #ffb703;
+$dark: #111827;
+$light: #f5f7fb;
+$body-bg: #f5f7fb;
+$body-color: #1f2937;
+$border-radius: 1rem;
+$font-family-base: Arial, sans-serif;
+
+@import "bootstrap/scss/bootstrap";
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  padding-top: 56px;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(108, 99, 255, 0.45), transparent 30%),
+    linear-gradient(135deg, #111827 0%, #1f1b4d 55%, #312e81 100%);
+  color: white;
+}
+
+.hero-card,
+.profile-card {
+  background: rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 28px;
+  padding: 40px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.25);
+}
+
+.profile-card {
+  padding: 50px 30px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #111827;
+  font-size: 36px;
+  font-weight: 800;
+  background: linear-gradient(135deg, #ffffff, #c7d2fe);
+}
+
+.section-title {
+  font-weight: 800;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 70px;
+  height: 4px;
+  display: block;
+  margin-top: 12px;
+  border-radius: 10px;
+  background: $primary;
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.skills span {
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: white;
+  color: $dark;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.project-card {
+  border: none;
+  border-radius: 24px;
+  box-shadow: 0 16px 45px rgba(17, 24, 39, 0.08);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(17, 24, 39, 0.14);
+}
+
+.project-icon {
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  margin-bottom: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(108, 99, 255, 0.12);
+  color: $primary;
+  font-weight: 800;
+}
+
+.contact-box {
+  padding: 28px;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 16px 45px rgba(17, 24, 39, 0.08);
+}
+
+.footer {
+  background: $dark;
+  color: white;
+}

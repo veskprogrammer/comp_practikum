@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lab 02 — Portfolio</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="#">Georgy Portfolio</a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarMenu">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarMenu">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link" href="#about">Обо мне</a></li>
+            <li class="nav-item"><a class="nav-link" href="#projects">Проекты</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contacts">Контакты</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-7">
+            <div class="hero-card">
+              <p class="badge rounded-pill text-bg-light mb-3">Vite + Bootstrap + SCSS</p>
+              <h1 class="display-4 fw-bold mb-3">Сайт-портфолио frontend-разработчика</h1>
+              <p class="lead mb-4">
+                Учебный проект для демонстрации сборки сайта с помощью Node.js, npm, Vite,
+                Sass и Bootstrap. Дизайн изменён с помощью кастомных SCSS-стилей.
+              </p>
+              <a href="#projects" class="btn btn-primary btn-lg me-2">Смотреть проекты</a>
+              <a href="#contacts" class="btn btn-outline-light btn-lg">Связаться</a>
+            </div>
+          </div>
+
+          <div class="col-lg-5">
+            <div class="profile-card text-center">
+              <div class="avatar">GK</div>
+              <h2 class="h4 mt-3">Георгий Киселев</h2>
+              <p class="mb-0">Frontend • HTML • CSS • JavaScript</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section id="about" class="py-5">
+        <div class="container">
+          <h2 class="section-title">Обо мне</h2>
+          <div class="row g-4">
+            <div class="col-lg-6">
+              <p>
+                Данный сайт создан как пример кастомного дизайна портфолио. В проекте используется
+                Bootstrap для сетки, компонентов и адаптивности, а также SCSS для изменения темы,
+                цветов, карточек, кнопок и общего внешнего вида.
+              </p>
+            </div>
+            <div class="col-lg-6">
+              <div class="skills">
+                <span>HTML5</span>
+                <span>CSS3</span>
+                <span>SCSS</span>
+                <span>Bootstrap</span>
+                <span>JavaScript</span>
+                <span>Vite</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="py-5 bg-light">
+        <div class="container">
+          <h2 class="section-title">Проекты</h2>
+
+          <div class="row g-4">
+            <div class="col-md-4">
+              <div class="card project-card h-100">
+                <div class="card-body">
+                  <div class="project-icon">01</div>
+                  <h5 class="card-title">Сайт-портфолио</h5>
+                  <p class="card-text">Адаптивная страница с главным экраном, карточками проектов и контактами.</p>
+                  <a href="#" class="btn btn-outline-primary">Подробнее</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card project-card h-100">
+                <div class="card-body">
+                  <div class="project-icon">02</div>
+                  <h5 class="card-title">Bootstrap UI</h5>
+                  <p class="card-text">Использование сетки Bootstrap, навигации, карточек, кнопок и форм.</p>
+                  <a href="#" class="btn btn-outline-primary">Подробнее</a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="card project-card h-100">
+                <div class="card-body">
+                  <div class="project-icon">03</div>
+                  <h5 class="card-title">SCSS Theme</h5>
+                  <p class="card-text">Кастомизация переменных Bootstrap и добавление собственных стилей.</p>
+                  <a href="#" class="btn btn-outline-primary">Подробнее</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacts" class="py-5">
+        <div class="container">
+          <h2 class="section-title">Контакты</h2>
+          <div class="contact-box">
+            <p class="mb-2">Email: example@mail.ru</p>
+            <p class="mb-0">GitHub: github.com/veskprogrammer</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer py-4 text-center">
+      <div class="container">
+        <p class="mb-0">© 2026 Георгий Киселев. Лабораторная работа №2.</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
