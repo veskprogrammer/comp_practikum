@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNG Size to JSON</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="app">
+    <section class="card">
+      <h1>PNG Size to JSON</h1>
+      <p>Загрузите PNG-файл. Сервер вернёт ширину и высоту изображения в JSON.</p>
+
+      <form id="uploadForm">
+        <input id="imageInput" name="image" type="file" accept="image/png" required />
+        <button type="submit">Отправить</button>
+      </form>
+
+      <div id="previewBox" class="preview hidden">
+        <h2>Thumbnail</h2>
+        <img id="preview" alt="Предпросмотр PNG" />
+      </div>
+
+      <div class="result">
+        <h2>Ответ сервера</h2>
+        <pre id="result">Пока файл не загружен</pre>
+      </div>
+
+      <div class="last">
+        <h2>Последний загруженный файл</h2>
+        <p id="lastFile">Нет данных</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
