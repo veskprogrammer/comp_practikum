@@ -1,0 +1,16 @@
+complete_requests,failed_requests,rps,mean_ms,p50_ms,p95_ms,p99_ms,transfer_kb_sec,framework,endpoint,label,requests,concurrency,cpu_iterations,sleep_seconds,raw_output
+500,0,1698.06,29.445,29,36,37,270.3,FastAPI,/,root,500,50,1000000,0.1,fastapi_root.txt
+60,0,9.81,2037.771,2033,2043,2043,1.77,FastAPI,/slow_endpoint,slow_blocking,60,20,1000000,0.1,fastapi_slow_blocking.txt
+100,0,145.65,137.317,107,152,153,25.89,FastAPI,/slow_endpoint_fixed,slow_fixed,100,20,1000000,0.1,fastapi_slow_fixed.txt
+30,0,25.43,393.178,360,421,429,4.22,FastAPI,/high_cpu_endpoint,cpu_blocking,30,10,1000000,0.1,fastapi_cpu_blocking.txt
+30,0,28.82,347.0,332,412,445,4.78,FastAPI,/high_cpu_endpoint_fixed,cpu_fixed,30,10,1000000,0.1,fastapi_cpu_fixed.txt
+500,0,2495.6,20.035,18,23,25,487.42,Aiohttp,/,root,500,50,1000000,0.1,aiohttp_root.txt
+60,0,9.86,2028.201,2024,2228,2831,2.14,Aiohttp,/slow_endpoint,slow_blocking,60,20,1000000,0.1,aiohttp_slow_blocking.txt
+100,0,148.42,134.749,114,119,119,31.74,Aiohttp,/slow_endpoint_fixed,slow_fixed,100,20,1000000,0.1,aiohttp_slow_fixed.txt
+30,0,29.12,343.419,350,452,453,5.89,Aiohttp,/high_cpu_endpoint,cpu_blocking,30,10,1000000,0.1,aiohttp_cpu_blocking.txt
+30,0,29.52,338.772,330,340,340,5.97,Aiohttp,/high_cpu_endpoint_fixed,cpu_fixed,30,10,1000000,0.1,aiohttp_cpu_fixed.txt
+500,0,2376.32,21.041,19,24,25,529.1,Tornado,/,root,500,50,1000000,0.1,tornado_root.txt
+60,0,9.84,2033.418,2031,2037,2037,2.4,Tornado,/slow_endpoint,slow_blocking,60,20,1000000,0.1,tornado_slow_blocking.txt
+100,0,153.73,130.099,108,110,111,37.08,Tornado,/slow_endpoint_fixed,slow_fixed,100,20,1000000,0.1,tornado_slow_fixed.txt
+30,0,28.69,348.595,335,364,366,6.58,Tornado,/high_cpu_endpoint,cpu_blocking,30,10,1000000,0.1,tornado_cpu_blocking.txt
+30,0,28.53,350.543,339,384,402,6.55,Tornado,/high_cpu_endpoint_fixed,cpu_fixed,30,10,1000000,0.1,tornado_cpu_fixed.txt
