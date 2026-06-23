@@ -1,136 +1,92 @@
-# Budget Planner / Expense Tracker WebAssembly Application
+# Budget Planner — приложение учёта расходов на WebAssembly
 
-## Project Overview
+## Описание проекта
 
-This project demonstrates how to build a complete web application using WebAssembly compiled from C. The Budget Planner application allows users to track their expenses by entering expense details, viewing them in a table, and seeing calculated totals by category.
+**Budget Planner** — это учебное веб-приложение для учёта расходов, демонстрирующее работу WebAssembly в связке с C, JavaScript и HTML.
 
-### Features
+Основная логика приложения написана на языке **C** и компилируется в **WebAssembly** с помощью компилятора **Emscripten**. Интерфейс приложения реализован на HTML и JavaScript. JavaScript вызывает функции, экспортированные из WebAssembly-модуля, получает данные о расходах и обновляет страницу в браузере.
 
-- Add expense entries with date, category, amount, and description
-- Display expenses in a dynamically updated table
-- Calculate and show total expenses and totals by category
-- Delete individual expense entries
-- Clear all expense entries
-- Responsive and user-friendly GUI
+Приложение позволяет добавлять расходы, отображать их в таблице, удалять отдельные записи, очищать список расходов и автоматически подсчитывать общую сумму.
 
-## Project Structure
+## Возможности приложения
 
-The project consists of the following files:
+В проекте реализованы следующие функции:
 
-- **main.c**: Core logic for the expense tracker implemented in C
-- **index.html**: HTML structure for the user interface
-- **app.js**: Custom JavaScript for DOM manipulation and event handling
+* добавление записи о расходе;
+* указание даты, категории, суммы и описания расхода;
+* отображение всех расходов в таблице;
+* удаление отдельной записи из таблицы;
+* очистка всех расходов;
+* автоматический подсчёт общей суммы расходов;
+* подсчёт сумм по категориям;
+* обновление интерфейса после изменения данных;
+* фильтрация расходов по категории;
+* подсчёт суммы только по видимым после фильтрации расходам;
+* экспорт отфильтрованных расходов в CSV-файл.
 
-## Technical Implementation
+## Структура проекта
 
-### Programming Language & Compilation
+| Файл                 | Назначение                                    |
+| -------------------- | --------------------------------------------- |
+| `main.c`             | Основная логика приложения на языке C         |
+| `index.html`         | Разметка пользовательского интерфейса         |
+| `app.js`             | JavaScript-код для работы с DOM и WebAssembly |
+| `index.js`           | JavaScript-файл, сгенерированный Emscripten   |
+| `index.wasm`         | WebAssembly-модуль после компиляции C-кода    |
+| `makefile`           | Файл для автоматической сборки проекта        |
+| `REPORT.md`          | Отчёт о проделанной работе                    |
+| `GITHUB_COMMANDS.md` | Команды для загрузки проекта на GitHub        |
 
-The application is built using C as the primary programming language and compiled to WebAssembly using Emscripten. The C code handles all data processing and calculations, while the HTML and JavaScript provide the user interface.
+## Принцип работы проекта
 
-### Data Structures
+Работа приложения построена следующим образом:
 
-The C code defines the following data structures:
+1. Пользователь открывает страницу `index.html` в браузере.
+2. Браузер загружает JavaScript-файлы и WebAssembly-модуль `index.wasm`.
+3. Пользователь вводит данные о расходе в форму.
+4. JavaScript получает значения из формы и передаёт их в WebAssembly через экспортированные функции.
+5. WebAssembly-модуль, собранный из `main.c`, сохраняет данные во внутренней структуре.
+6. JavaScript запрашивает данные обратно из WebAssembly и обновляет таблицу на странице.
+7. При удалении, очистке или фильтрации расходов интерфейс обновляется автоматически.
 
-- `ExpenseEntry`: Represents an individual expense with date, category, amount, and description
-- `CategoryTotal`: Stores the total amount for each expense category
+## Установка Emscripten
 
-### Core Functionality
+Официальная инструкция:
 
-The C code implements the following functions:
-
-- Add an expense entry
-- Delete an expense entry by index
-- Clear all expense entries
-- Calculate total expenses
-- Calculate totals by category
-
-### WebAssembly Integration
-
-The C code is compiled to WebAssembly using Emscripten, which generates JavaScript glue code to interface with the HTML UI. The application uses Emscripten's API to export C functions to JavaScript and to update the HTML UI when data changes.
-
-## Compilation Instructions
-
-To compile the project, you need to have Emscripten installed. Follow these steps:
-
-1. Install Emscripten by following the instructions at [https://emscripten.org/docs/getting_started/downloads.html](https://emscripten.org/docs/getting_started/downloads.html)
-
-2. Clone or download this project to your local machine
-
-3. Navigate to the project directory in your terminal
-
-4. Compile the C code to WebAssembly using the following command:
-
-```bash
-emcc main.c -o index.js -s WASM=1 -O2 -s EXPORTED_RUNTIME_METHODS='["stringToUTF8","UTF8ToString"]' -s EXPORTED_FUNCTIONS='["_main","_jsAddExpense","_jsDeleteExpense","_jsClearAllExpenses","_jsGetTotalExpenses","_jsGetExpenseCount","_jsGetCategoryCount","_getExpenseJSON","_getCategoryTotalJSON","_freeMemory","_malloc","_free"]' --shell-file index.html -s ALLOW_MEMORY_GROWTH=1
+```text
+https://emscripten.org/docs/getting_started/downloads.html
 ```
 
-This command:
-- Compiles `main.c` to WebAssembly
-- Uses `index.html` as a template for the output HTML file
-- Exports the necessary C functions to JavaScript
-- Enables memory growth for dynamic memory allocation
-- Optimizes the code with `-O2`
-
-Ensure that the following files are in the same directory as `index.html`:
-- `app.js`
-- `index.js`
-- The WebAssembly file (`.wasm`) generated during compilation
-
-## Running the Application
-
-To run the application, you need to serve the compiled files using a web server. You can use Python's built-in HTTP server:
+Пример установки:
 
 ```bash
-python3 -m http.server 8000
+git clone https://github.com/emscripten-core/emsdk.git
+cd emsdk
+./emsdk install latest
+./emsdk activate latest
+source ./emsdk_env.sh
 ```
 
-Then open your web browser and navigate to `http://localhost:8000/` to use the application.
+Для Windows:
 
-## Educational Value
+```powershell
+emsdk_env.bat
+```
 
-This project demonstrates several important concepts:
+Проверка установки:
 
-- WebAssembly compilation from C using Emscripten
-- Data structures and memory management in C
-- Integration between C, WebAssembly, and JavaScript
-- Dynamic UI updates based on data changes
-- Form validation and error handling
+```bash
+emcc --version
+```
 
-Students will learn how to:
-- Structure a WebAssembly project
-- Define and manipulate data structures in C
-- Export C functions to JavaScript
-- Handle user input and update the UI
-- Implement a practical application with real-world utility
-
-## License
-
-This project is provided for educational purposes and can be freely used and modified for academic purposes.
-
-## Student Improvement
-
-The project was extended with an additional UI feature: **category filtering and CSV export**.
-
-What was changed:
-
-- Added a new **Filter and Export** block to `index.html`.
-- Added a category selector that filters visible expense rows without changing data stored in WebAssembly memory.
-- Added a **Visible total** value that recalculates the total only for currently displayed rows.
-- Added an **Export Visible CSV** button that exports the currently displayed rows to `budget_planner_visible_expenses.csv`.
-- Updated `app.js` to read expense data from the WebAssembly module through the existing `_getExpenseJSON` function and to keep the original row index for correct deletion after filtering.
-
-The improvement does not require changing `main.c`, because it reuses the existing WebAssembly API exported by the original C code.
-
-## Recommended Build Command
-
-The project already includes a `makefile`. After Emscripten is activated, run:
+## Сборка проекта
 
 ```bash
 make clean
 make
 ```
 
-If `make` is not available, run the same build command manually:
+Если `make` недоступен, можно выполнить сборку вручную:
 
 ```bash
 emcc main.c -s WASM=1 -s ASSERTIONS=1 -s MODULARIZE=1 -s EXPORT_NAME="'BudgetPlanner'" \
@@ -139,14 +95,33 @@ emcc main.c -s WASM=1 -s ASSERTIONS=1 -s MODULARIZE=1 -s EXPORT_NAME="'BudgetPla
 -O3 --llvm-opts 2 --llvm-lto 1 -s ALLOW_MEMORY_GROWTH=1 -o index.js
 ```
 
-To run the app locally:
+## Запуск приложения
 
 ```bash
 python -m http.server 8000
 ```
 
-Open in browser:
+После запуска открыть:
 
 ```text
 http://localhost:8000/
 ```
+
+## Добавленное улучшение
+
+В рамках лабораторной работы в проект было добавлено самостоятельное улучшение: **фильтрация расходов по категории и экспорт видимых расходов в CSV**.
+
+Было добавлено:
+
+* выпадающий список для выбора категории;
+* отображение суммы видимых расходов;
+* кнопка экспорта видимых расходов в CSV-файл;
+* получение расходов из WebAssembly через `_getExpenseJSON`;
+* пересчёт суммы только по выбранной категории;
+* сохранение исходного индекса записи для корректного удаления после фильтрации.
+
+## Вывод
+
+В ходе работы был изучен проект Budget Planner, написанный с использованием C, WebAssembly, JavaScript и HTML. Был рассмотрен принцип взаимодействия WebAssembly-модуля с браузерным интерфейсом. Также была выполнена подготовка проекта к сборке через Emscripten и добавлено самостоятельное улучшение — фильтрация расходов по категориям и экспорт видимых данных в CSV.
+
+Проект показывает, как можно использовать WebAssembly для переноса логики приложения, написанной на C, в веб-среду.
